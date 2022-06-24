@@ -1,0 +1,39 @@
+.about-img {
+    border-radius: 15px;
+}
+
+.section-title {
+    position: relative;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.section-title::after {
+    position: absolute;
+    content: '';
+    width: 80px;
+    height: 5px;
+    background: #ffc107;
+    bottom: -10px;
+    left: 0;
+}
+
+.section-desc {
+    margin-top: 50px;
+}
+
+
+@media (max-width: 575.98px) {
+    .section-title {
+        text-align: center;
+        font-size: 30px;
+    }
+    .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+    }
+    .section-desc {
+        text-align: justify;
+    }
+}
