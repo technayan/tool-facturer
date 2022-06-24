@@ -1,0 +1,13 @@
+.not-found {
+    height: 100vh;
+}
+
+.not-found-img {
+    width: 30%;
+}
+
+@media (max-width: 991.98px) {
+    .not-found-img {
+        width: 50%;
+    }
+}

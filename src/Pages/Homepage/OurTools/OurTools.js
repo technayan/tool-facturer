@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 import './OurTools.css';
 import Product from './Product/Product';
 
@@ -8,7 +9,7 @@ const Tools = () => {
     const {data: products, isLoading} = useQuery('products', () => fetch('http://localhost:5000/products').then(res => res.json()));
     
     if(isLoading) {
-        return <p>Loading...</p>
+        return <Loading />
     }
     
     return (
