@@ -3,6 +3,7 @@ import About from './About/About';
 import BusinessSummery from './BusinessSummary/BusinessSummery';
 import Hero from './Hero/Hero';
 import OurTools from './OurTools/OurTools';
+import Reviews from './Reviews/Reviews';
 import WhyUs from './WhyUs/WhyUs';
 
 const Homepage = () => {
@@ -13,6 +14,7 @@ const Homepage = () => {
             <WhyUs />
             <OurTools />
             <BusinessSummery />
+            <Reviews />
         </div>
     );
 };

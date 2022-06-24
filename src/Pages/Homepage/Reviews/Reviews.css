@@ -1,0 +1,55 @@
+.reviews-section {
+    background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(../../../assets/about.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.carousel {
+    width: 70%;
+    margin-top: 80px;
+}
+
+.carousel-item {
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.rating {
+    color: #ffc107;
+    margin: 0 3px;
+}
+
+.carousel-control-prev {
+    margin-left: -15%;
+}
+
+.carousel-control-next {
+    margin-right: -15%;
+}
+
+.carousel-control-prev-icon {
+    background: url(../../../../node_modules/bootstrap-icons/icons/chevron-left.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carousel-control-next-icon {
+    background: url(../../../../node_modules/bootstrap-icons/icons/chevron-right.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carousel-indicators {
+    bottom: -70px !important;
+}
+
+
+
+
+
+@media (max-width: 991.98px) { 
+    .carousel {
+        width: 80% !important;
+    }
+}

@@ -12,7 +12,7 @@ const Tools = () => {
     }
     
     return (
-        <section className='section tools-section'>
+        <section className='section tools-section' id='tools'>
             <Container>
                 <h2 className='section-title'>Our Tools</h2>
                 <Row xs={1} md={2} lg={3} className="g-4 mt-5">

@@ -4,7 +4,7 @@ import './BusinessSummary.css'
 
 const BusinessSummery = () => {
     return (
-        <div className='business-summary'>
+        <div className='business-summary' id='business-summary'>
             <Container>
                 <Row>
                     <div className="col-md-3">
