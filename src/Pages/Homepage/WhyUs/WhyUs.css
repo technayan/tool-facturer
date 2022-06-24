@@ -1,0 +1,59 @@
+.why-us-section {
+    background: url('../../../assets/hero.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 70px 0
+}
+
+.section-title {
+    position: relative;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.section-title::after {
+    position: absolute;
+    content: '';
+    width: 80px;
+    height: 5px;
+    background: #ffc107;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.box {
+    padding: 20px 30px;
+    margin: 15px 0;
+    text-align: center;
+    border: 2px solid #ffc107;
+    border-radius: 15px;
+}
+
+.box-desc {
+    font-size: 14px;
+}
+
+.icon {
+    font-size: 50px;
+    color: #ffc107;
+}
+
+
+@media (max-width: 991.98px) {
+    .box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .section-title {
+        text-align: center;
+        font-size: 30px;
+    }
+    .section-title::after {
+        width: 50px;
+    }
+
+}

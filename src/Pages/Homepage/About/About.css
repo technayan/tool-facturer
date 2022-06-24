@@ -2,13 +2,13 @@
     border-radius: 15px;
 }
 
-.section-title {
+.section-title-left {
     position: relative;
     font-weight: bold;
     font-size: 40px;
 }
 
-.section-title::after {
+.section-title-left::after {
     position: absolute;
     content: '';
     width: 80px;
@@ -24,11 +24,11 @@
 
 
 @media (max-width: 575.98px) {
-    .section-title {
+    .section-title-left {
         text-align: center;
         font-size: 30px;
     }
-    .section-title::after {
+    .section-title-left::after {
         left: 50%;
         transform: translateX(-50%);
         width: 50px;

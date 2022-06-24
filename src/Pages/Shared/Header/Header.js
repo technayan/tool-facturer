@@ -11,7 +11,7 @@ const Header = () => {
         <Link to={'/'}><img src={Logo} className='' alt="ToolFacturer" /></Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="ms-auto pt-4 pt-lg-0">
             <Link className='nav-link' to={'/blogs'}>Blogs</Link>
             <Link className='nav-link' to={'/portfolio'}>Portfolio</Link>
           </Nav>
