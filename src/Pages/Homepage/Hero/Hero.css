@@ -18,16 +18,7 @@
     width: 70%;
 }
 
-.primary-btn {
-    display: inline-block;
-    transition: 0.3s ease;
-    background: #ffc107;
-}
 
-.primary-btn:hover {
-    background: #1a1a1a;
-    color: #fff !important;
-}
 
 @media (max-width: 991.98px) {
     .hero-section {

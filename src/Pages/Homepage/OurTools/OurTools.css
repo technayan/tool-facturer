@@ -1,0 +1,12 @@
+.card-text {
+    font-size: 15px;
+}
+
+.card-img-top {
+    transition: 0.3s ease;
+    height: 225px;
+}
+
+.card:hover .card-img-top{
+    transform: scale(1.05);
+}

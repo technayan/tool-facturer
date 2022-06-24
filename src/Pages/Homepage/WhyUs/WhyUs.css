@@ -1,26 +1,8 @@
 .why-us-section {
-    background: url('../../../assets/hero.png');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../../assets/hero.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    padding: 70px 0
-}
-
-.section-title {
-    position: relative;
-    font-weight: bold;
-    font-size: 40px;
-}
-
-.section-title::after {
-    position: absolute;
-    content: '';
-    width: 80px;
-    height: 5px;
-    background: #ffc107;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .box {
@@ -45,15 +27,4 @@
     .box {
         padding: 20px;
     }
-}
-
-@media (max-width: 575.98px) {
-    .section-title {
-        text-align: center;
-        font-size: 30px;
-    }
-    .section-title::after {
-        width: 50px;
-    }
-
 }

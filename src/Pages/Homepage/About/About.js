@@ -5,7 +5,7 @@ import './About.css'
 
 const About = () => {
     return (
-        <section className='about-section py-2 my-5 py-lg-5 my-lg-5'>
+        <section className='section about-section'>
             <Container>
                 <Row className='align-items-center'>
                     <div className="col-md-6 text-center text-md-start">

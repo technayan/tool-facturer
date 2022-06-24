@@ -1,0 +1,22 @@
+import React from 'react';
+import { Card, Col } from 'react-bootstrap';
+
+const Product = ({product}) => {
+    return (
+        <Col>
+            <Card className='pt-4'>
+                <Card.Img variant="top" src={product.imageUrl} className='w-50 mx-auto' />
+                <Card.Body>
+                <Card.Title className='fw-bold'>{product.name}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <h6 className='fw-bold'>Min Order Qnt : {product.minOrderQnt}</h6>
+                <h6 className='fw-bold'>Available Qnt : {product.availableQnt}</h6>
+                <h6><span className='fw-bold'>Price : ${product.price}</span> /unit </h6>
+                <button className='primary-btn w-100 mt-3 fw-bold'>Order Now</button>
+                </Card.Body>
+            </Card>
+        </Col>
+    );
+};
+
+export default Product;
