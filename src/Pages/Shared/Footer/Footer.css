@@ -1,0 +1,16 @@
+.footer-title {
+    font-family: 'Oswald', sans-serif;
+}
+
+.partners-list {
+    list-style: none;
+}
+
+.social-link {
+    font-size: 25px;
+    transition: 0.3s ease;
+}
+
+.social-link:hover {
+    color: #fff !important;
+}
