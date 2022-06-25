@@ -33,7 +33,7 @@ const Register = () => {
     let registerError;
 
     if(error || gError || updateError) {
-        registerError = <small className='text-danger'>{error?.message || gError?.message}</small>
+        registerError = <small className='text-danger'>{error?.message || gError?.message || updateError?.message}</small>
     }
 
     // Redirect to Homepage
