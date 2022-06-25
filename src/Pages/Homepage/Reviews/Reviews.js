@@ -14,11 +14,11 @@ const Reviews = () => {
                         <div>
                             <h3>Richard Boston</h3>
                             <div className="rating my-2">
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
                             </div>
                             <p>The product quality is very good. I am a power tool dealer I ordered tools to ToolFacturer and the delivery products are very good in quality.</p>
                         </div>
@@ -27,11 +27,11 @@ const Reviews = () => {
                         <div>
                             <h3>Richard Boston</h3>
                             <div className="rating my-2">
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
-                                <i class="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
+                                <i className="bi bi-star-fill rating"></i>
                             </div>
                             <p>The product quality is very good. I am a power tool dealer I ordered tools to ToolFacturer and the delivery products are very good in quality.</p>
                         </div>
