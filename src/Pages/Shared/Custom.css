@@ -50,6 +50,31 @@
     color: #fff !important;
 }
 
+.divider {
+    position: relative;
+    margin-top: 10px;
+}
+
+.divider::before{
+    position: absolute;
+    content: '';
+    width: 30%;
+    height: 1px;
+    top:50%;
+    right: 60%;
+    background: #959595;
+}
+
+.divider::after{
+    position: absolute;
+    content: '';
+    width: 30%;
+    height: 1px;
+    top:50%;
+    left: 60%;
+    background: #959595;
+}
+
 
 /* Responsive CSS */
 @media (max-width: 575.98px) {

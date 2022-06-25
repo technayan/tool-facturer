@@ -14,3 +14,10 @@
 .social-link:hover {
     color: #fff !important;
 }
+
+@media (max-width: 575.98px) {
+    .social-link {
+        font-size: 30px;
+        text-align: center;
+    }
+}
