@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 import useToken from '../../hooks/useToken';
+import { toast } from "react-toastify";
 
 const Register = () => {
     const [createUserWithEmailAndPassword,user,loading,error] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [sendEmailVerification, sending, emailSndingError] = useSendEmailVerification(auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
@@ -21,19 +23,27 @@ const Register = () => {
         await updateProfile({ displayName: data.name });
     }
 
+    // Send Verification Email
+    useEffect(() => {
+        if(user) {
+            sendEmailVerification();
+            toast.success('A verification email is sent !')
+        }
+    }, [user]);    
+
     // Issue a token
     const [token] = useToken(user || gUser);
 
     // Loading
-    if(loading || gLoading || updating) {
+    if(loading || gLoading || updating || sending) {
         return <Loading />
     }
 
     // Error
     let registerError;
 
-    if(error || gError || updateError) {
-        registerError = <small className='text-danger'>{error?.message || gError?.message || updateError?.message}</small>
+    if(error || gError || updateError || emailSndingError) {
+        registerError = <small className='text-danger'>{error?.message || gError?.message || updateError?.message || emailSndingError?.message}</small>
     }
 
     // Redirect to Homepage
