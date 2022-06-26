@@ -1,0 +1,16 @@
+.purchase-form {
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+#order-quantity::-webkit-outer-spin-button,
+#order-quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.qnt-btn {
+    cursor: pointer;
+}

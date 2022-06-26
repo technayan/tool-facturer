@@ -27,7 +27,7 @@ const Register = () => {
     useEffect(() => {
         if(user) {
             sendEmailVerification();
-            toast.success('A verification email is sent !')
+            toast.success('A verification email is sent !');
         }
     }, [user]);    
 
