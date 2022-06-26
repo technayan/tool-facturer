@@ -1,0 +1,19 @@
+.sidebar {
+    border: 1px solid #000;
+    border-radius: 10px;
+    height: 100vh;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+
+.sidebar-link:hover {
+    background: #ffc107;
+    color: #1a1a1a;
+}
