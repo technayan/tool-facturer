@@ -9,6 +9,7 @@ import Header from "./Pages/Shared/Header/Header";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import Purchase from "./Pages/Purchase/Purchase";
+import RequireAuth from "./Pages/Shared/RequireAuth/RequireAuth";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/products/:id" element={<Purchase />}></Route>
+        <Route path="/products/:id" element={<RequireAuth><Purchase /></RequireAuth>}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />

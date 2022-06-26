@@ -83,24 +83,16 @@ const Purchase = () => {
             }
         })
     }
-    
-    
-    
-    
-    
-
 
     return (
         <div className='my-5 py-5'>
-            <Container>
-
-                <h2 className='mb-5'>Purchase : {product.name}</h2>
+            <Container className='mt-5'>
                 <Row>
                     <div className="col-md-6 col-lg-8">
-                        <div className="d-lg-flex justify-content-between">
+                        <div className="d-lg-flex justify-content-between text-center">
                             <img src={product.imageUrl} className="w-50 mb-4 mb-md-0 h-100" alt={product.name} />
-                            <div className="product-info ms-md-3">
-                                <h3>{product.name}</h3>
+                            <div className="product-info ms-md-3 text-start">
+                                <h3 className='fw-bold mb-3'>{product.name}</h3>
                                 <p>{product.description}</p>
                             </div>
                         </div>
@@ -126,7 +118,6 @@ const Purchase = () => {
                                 orderInRange ? <input className='w-100 primary-btn' type="submit" value="Order" />:
                                 <input className='w-100 p-2' type="submit" value="Order" disabled/>
                             }
-
                         </form>
                     </div>
                 </Row>
