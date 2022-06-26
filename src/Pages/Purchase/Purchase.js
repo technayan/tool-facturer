@@ -35,11 +35,13 @@ const Purchase = () => {
         setOdrQnt(quantity);
     }
 
+    // Quantity Error Message
     let quantityError;
     if(!orderInRange) {
         quantityError = <span className='text-danger d-block'>Quantity should be in {product.minOrderQnt} to {product.availableQnt}.</span>
     }
 
+    // Total Price
     const total = odrQnt * product.price ||  product.minOrderQnt * product.price; 
 
     // Loading
@@ -52,10 +54,34 @@ const Purchase = () => {
         toast('Please try again !');
     }
 
-    
-
     const handleOrder = (event) => {
         event.preventDefault();
+
+        const order = {
+            userName : event.target.name.value,
+            userEmail : event.target.email.value,
+            productName : product.name,
+            orderQuantity : parseInt(event.target.orderQuantity.value),
+            totalPrice: total
+        }
+
+        // Send Order Data to DB via server
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(order)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.insertedId) {
+                toast.success('Order added. Please pay form dashboad!');
+            } else {
+                toast.error('Failed to add order. Try Again!')
+            }
+        })
     }
     
     
@@ -88,14 +114,14 @@ const Purchase = () => {
                             <p className='mt-2'>Min. Order Quantity: {product.minOrderQnt}</p>
                             <p>Available Quantity: {product.availableQnt}</p>
                             <p>Price per Unit: ${product.price}</p>
-                            <div className='d-flex justify-content-between align-items-center mb-1'>
+                            <div className='d-flex justify-content-between align-items-center mb-3'>
                             <p className='mb-0'>Order Quantity: </p>
                             <input type="number" name='orderQuantity' onChange={checkQnt} id='order-quantity' className='w-25 p-1' defaultValue={product.minOrderQnt} />
                             </div>
 
                             {quantityError}
 
-                            <p className='mt-1 fw-bold'>Total: ${total}</p>
+                            <p className='mt-3 fw-bold'>Total: ${total}</p>
                             {
                                 orderInRange ? <input className='w-100 primary-btn' type="submit" value="Order" />:
                                 <input className='w-100 p-2' type="submit" value="Order" disabled/>
