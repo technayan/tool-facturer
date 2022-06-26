@@ -30,6 +30,9 @@ const Header = () => {
           <Nav className="me-lg-auto ms-lg-5 pt-4 pt-lg-0">
             <Link className='nav-link' to={'/blogs'}>Blogs</Link>
             <Link className='nav-link' to={'/portfolio'}>Portfolio</Link>
+            {
+              user && <Link className='nav-link' to={'/dashboard'}>Dashboard</Link>
+            }
           </Nav>
           <Nav>
           {

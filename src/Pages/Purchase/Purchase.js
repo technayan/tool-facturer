@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 import { toast } from 'react-toastify';
@@ -12,6 +12,8 @@ const Purchase = () => {
     const [user, loading, error] = useAuthState(auth);
     const [orderInRange, setOrderInRange] = useState(true);
     const [odrQnt, setOdrQnt] = useState(0);
+
+    const navigate = useNavigate();
 
     // Get the Product Id
     const {id} = useParams();
@@ -78,6 +80,8 @@ const Purchase = () => {
         .then(data => {
             if(data.insertedId) {
                 toast.success('Order added. Please pay form dashboad!');
+                navigate('/dashboard');
+                
             } else {
                 toast.error('Failed to add order. Try Again!')
             }
