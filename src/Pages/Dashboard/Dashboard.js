@@ -4,17 +4,20 @@ import { Link, Outlet } from 'react-router-dom';
 import './Dashboard.css'
 
 const Dashboard = () => {
+    // Sidebar
     const [show, setShow] = useState(false);
-
+    
+    // Sidebar Show and Hide Handler
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     return (
         <div className='mt-5 py-5'>
             
             <Container>
                 <Row>
                     <div className="col-md-3">
-                        <div className="sidebar py-3 d-flex flex-column">
+                        <div className="sidebar d-flex flex-column">
                             <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
                             <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
                             <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>

@@ -1,12 +1,12 @@
 .sidebar {
-    border: 1px solid #000;
+    background: #f0f0f0;
     border-radius: 10px;
     height: 100vh;
 }
 
 .sidebar-link {
     display: block;
-    padding: 10px;
+    padding: 15px;
     text-decoration: none;
     color: #1a1a1a;
     transition: 0.3s ease;
@@ -15,5 +15,5 @@
 
 .sidebar-link:hover {
     background: #ffc107;
-    color: #1a1a1a;
+    color: #1a1a1a !important;
 }
