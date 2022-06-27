@@ -12,6 +12,7 @@ import Purchase from "./Pages/Purchase/Purchase";
 import RequireAuth from "./Pages/Shared/RequireAuth/RequireAuth";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
+import Payment from "./Pages/Dashboard/MyOrders/Payment/Payment";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/products/:id" element={<RequireAuth><Purchase /></RequireAuth>}></Route>
         <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>}>
           <Route index element={<MyOrders />} />
+          <Route path="payment/:id" element={<Payment />} />
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

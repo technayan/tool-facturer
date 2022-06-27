@@ -92,6 +92,12 @@
     background: #959595;
 }
 
+/* Pay Button CSS */
+.pay-btn:hover {
+    background: #1a1a1a !important;
+    color: #fff !important;
+}
+
 /* Responsive CSS */
 @media (max-width: 575.98px) {
     .section {

@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const MyOrders = () => {
@@ -92,7 +92,7 @@ const MyOrders = () => {
                             <td className={`${order.status === 'Unpaid' ? 'text-danger': 'text-success'}`}>{order.status}</td>
                             <td>{order.status === 'Unpaid' && 
                                 <>
-                                    <button className='btn btn-success me-5'>Pay</button>
+                                    <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success me-5'>Pay</Link>
                                     <button onClick={() => openDeleteModal(order)} className='btn btn-danger'>Delete</button>
                                 </>
                                 }</td>
