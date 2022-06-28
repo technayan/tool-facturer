@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const ManageUsers = () => {
+    const [user, loading] = useAuthState(auth);
     const [deletingUser, setDeletingUser] = useState(null);
+
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
+
+    const navigate = useNavigate();
+
+    
 
     // Delete Modal
     const [deleteModalShow, setDeleteModalShow] = useState(false);
@@ -36,8 +50,29 @@ const ManageUsers = () => {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => {
+            if(res.status === 403) {
+                toast.error('You have no access to make an admin');
+            } else {
+                return res.json()
+            }
+        })
+        .then(data => {
+            if(data.modifiedCount) {
+                toast.success(`${user.email} is now an Admin.`)
+                refetch();
+            }
+        })
+    }
+
+    // Loading
+    if(loading || adminLoading) {
+        return <Loading />
+    }
+
+    if(!admin) {
+        signOut(auth);
+        navigate('/login');
     }
 
     const deleteUser = id => {
@@ -62,7 +97,6 @@ const ManageUsers = () => {
     if(isLoading) {
         return <Loading />
     }
-
 
     return (
         <div>

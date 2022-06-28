@@ -3,14 +3,28 @@ import { Button, Container, Offcanvas, Row } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 import './Dashboard.css'
 import Logo from '../../assets/logo.png';
+import useAdmin from '../../hooks/useAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading/Loading';
 
 const Dashboard = () => {
+    const [user, loading] = useAuthState(auth);
+
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
+
     // Sidebar
     const [show, setShow] = useState(false);
     
     // Sidebar Show and Hide Handler
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    //Loading 
+    if(loading || adminLoading) {
+        return <Loading />
+    }
 
     return (
         <div className='mt-5 mt-lg-5 py-5 dashboard-w'>
@@ -19,10 +33,15 @@ const Dashboard = () => {
                 <Row>
                     <div className="col-lg-3">
                         <div className="sidebar d-flex flex-column d-none d-lg-block">
-                            <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
-                            <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
+                            {
+                                !admin && <><Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
+                                <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link></>
+                            }
                             <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
-                            <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                            {
+                                admin && <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                            }
+                            
                         </div>
                         <Button className="d-lg-none btn bg-light text-dark border-dark fs-2 px-2 py-0 mb-4" onClick={handleShow}><i className="bi bi-list"></i></Button>
                     </div>
@@ -39,10 +58,15 @@ const Dashboard = () => {
                             <Offcanvas.Title><img src={Logo} alt="Tool Facturer"/></Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body className='d-flex flex-column'>
-                                <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
-                                <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
+                                {
+                                    !admin && <><Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
+                                    <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link></>
+                                }
+                                
                                 <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
-                                <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                                {
+                                    admin && <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                                }
                             </Offcanvas.Body>
                         </Offcanvas>
                     </div>
