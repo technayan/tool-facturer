@@ -1,41 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Container} from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
+import { useQuery } from 'react-query';
 import './Reviews.css'
 
 const Reviews = () => {
+    const [reviews, setReviews] = useState([]);
+    const url = 'http://localhost:5000/reviews';
+    useEffect(() => {
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => setReviews(data))
+    }, [url])
+
+    // Total Reviews
+    const totalReviews = reviews.length;
+
+    // Recent Reviews
+    const recentReviews = reviews.slice(totalReviews - 6, totalReviews);
+
+    
+
     return (
         <section className='section reviews-section'>
             <h2 className='section-title mb-5 text-light'>Client Reviews</h2>
             <Container>
-
                 <Carousel className='text-center mx-auto text-light mb-5'>
-                    <Carousel.Item>
-                        <div>
-                            <h3>Richard Boston</h3>
-                            <div className="rating my-2">
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
+                    {
+                        recentReviews.map(review => <Carousel.Item key={review._id} review={review}>
+                            <div>
+                                <h3>{review.userName}</h3>
+                                <p className="fw-bold my-2">{review.rating} <i className="bi bi-star-fill rating"></i></p>
+                                
+                                <p>{review.review}</p>
                             </div>
-                            <p>The product quality is very good. I am a power tool dealer I ordered tools to ToolFacturer and the delivery products are very good in quality.</p>
-                        </div>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <div>
-                            <h3>Richard Boston</h3>
-                            <div className="rating my-2">
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                                <i className="bi bi-star-fill rating"></i>
-                            </div>
-                            <p>The product quality is very good. I am a power tool dealer I ordered tools to ToolFacturer and the delivery products are very good in quality.</p>
-                        </div>
-                    </Carousel.Item>
+                        </Carousel.Item>)
+                    }
                 </Carousel>
             </Container>
             

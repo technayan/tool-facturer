@@ -15,7 +15,6 @@ const AddReview = () => {
         const review = data;
         review.userName = user.displayName;
         review.userEmail = user.email;
-        review.userImgUrl= user.photoURL;
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
