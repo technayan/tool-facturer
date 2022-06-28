@@ -10,8 +10,6 @@ const AddReview = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [user, loading] = useAuthState(auth);
 
-    console.log(user);
-
 
     const onSubmit = data => {
         const review = data;
@@ -58,8 +56,8 @@ const AddReview = () => {
                 </div>
 
                 <textarea className='w-100 p-2 rounded my-2' rows='5' placeholder='Review Message' {...register("review", { required: {value: true, message: 'Review is required'}, minLength:{value: 20, message: 'Minimum 20 characters'}})} />
-                {errors.review?.type === 'required' && <span className='text-danger'>{errors.review.message}</span>}
-                {errors.review?.type === 'minLength' && <span className='text-danger'>{errors.review.message}</span>}
+                {errors.review?.type === 'required' && <span className='text-danger d-block'>{errors.review.message}</span>}
+                {errors.review?.type === 'minLength' && <span className='text-danger d-block'>{errors.review.message}</span>}
 
 
                 <label htmlFor="rating">Rating :</label>
