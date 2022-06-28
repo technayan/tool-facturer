@@ -1,0 +1,9 @@
+.review-form {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.1);
+}
+
+.review-formform input {
+    border: 1px solid #c1c1c1;
+}

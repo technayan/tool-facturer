@@ -98,6 +98,11 @@
     color: #fff !important;
 }
 
+/* Table CSS */
+.table-wrapper {
+    overflow-x: scroll !important;
+}
+
 /* Responsive CSS */
 @media (max-width: 575.98px) {
     .section {

@@ -73,12 +73,14 @@ const MyOrders = () => {
     return (
         <div>
             <h6 className='fw-bold my-4'>My Orders :</h6>
-            <Table bordered >
+            <div className='table-wrapper'>
+            <Table bordered className=' w-100' >
                 <thead>
                     <tr>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Transaction Id</th>
                     <th>Status</th>
                     <th>Action</th>
                     </tr>
@@ -86,20 +88,22 @@ const MyOrders = () => {
                 <tbody>
                     {
                         orders?.map(order => <tr key={order._id}>
-                            <td>{order.productName}</td>
-                            <td>{order.orderQuantity} pcs.</td>
-                            <td>${order.totalPrice}</td>
-                            <td className={`${order.status === 'Unpaid' ? 'text-danger': 'text-success'}`}>{order.status}</td>
-                            <td>{order.status === 'Unpaid' && 
-                                <>
+                            <td className='w-100'>{order.productName}</td>
+                            <td className='w-100'>{order.orderQuantity} pcs.</td>
+                            <td className='w-100'>${order.totalPrice}</td>
+                            <td className='w-100'>{order.transactionId ? order.transactionId : 'N/A'}</td>
+                            <td className={`w-100 ${order.status === 'Unpaid' ? 'text-danger': 'text-success'}`}>{order.status}</td>
+                            <td className='w-100'>{order.status === 'Unpaid' && 
+                                <div className='d-flex'>
                                     <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success me-5'>Pay</Link>
                                     <button onClick={() => openDeleteModal(order)} className='btn btn-danger'>Delete</button>
-                                </>
+                                </div>
                                 }</td>
                         </tr>) 
                     }
                 </tbody>
             </Table>
+            </div>
             {
                 !orders && <p>You have no order to show.</p>
             }

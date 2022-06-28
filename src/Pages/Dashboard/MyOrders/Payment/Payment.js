@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -26,7 +26,6 @@ const Payment = () => {
         return <Loading />
     }
     
-
     return (
         <div>
             <h6 className='fw-bold my-4'>Pay for : {order?.productName}</h6>

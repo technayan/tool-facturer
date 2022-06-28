@@ -74,7 +74,7 @@ const CheckoutForm = ({order}) => {
         } else {
             setCardError('');
             setTransactionId(paymentIntent.id);
-            setSuccess('Congrats! Your payment is successful.')
+            setSuccess('Congrats! Your payment is successful. You will get your products within 7 official days.')
             
             // Store Payment on Database
             const payment = {
@@ -124,11 +124,11 @@ const CheckoutForm = ({order}) => {
                 </div>
             </form>
             {
-                cardError && <p className='text-danger'>{cardError}</p>
+                cardError && <p className='text-danger mt-3'>{cardError}</p>
             }
             {
                 success && <div>
-                    <p className='text-success'>{success}</p>
+                    <p className='text-success mt-3'>{success}</p>
                     <p>Transaction Id : <span className='fw-bold'>{transactionId}</span></p>
                 </div>
             }
