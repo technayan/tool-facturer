@@ -15,6 +15,7 @@ import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import Payment from "./Pages/Dashboard/MyOrders/Payment/Payment";
 import AddReview from "./Pages/Dashboard/AddReview/AddReview";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
+import ManageUsers from "./Pages/Dashboard/ManageUsers/ManageUsers";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="payment/:id" element={<Payment />} />
           <Route path="add-review" element={<AddReview />} />
           <Route path="my-profile" element={<MyProfile />} />
+          <Route path="manage-users" element={<ManageUsers />} />
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

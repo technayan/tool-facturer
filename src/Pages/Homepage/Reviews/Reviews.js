@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Container} from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
-import { useQuery } from 'react-query';
 import './Reviews.css'
 
 const Reviews = () => {

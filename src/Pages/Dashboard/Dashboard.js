@@ -22,6 +22,7 @@ const Dashboard = () => {
                             <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
                             <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
                             <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
+                            <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
                         </div>
                         <Button className="d-lg-none btn bg-light text-dark border-dark fs-2 px-2 py-0 mb-4" onClick={handleShow}><i className="bi bi-list"></i></Button>
                     </div>
@@ -41,6 +42,7 @@ const Dashboard = () => {
                                 <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
                                 <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
                                 <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
+                                <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
                             </Offcanvas.Body>
                         </Offcanvas>
                     </div>
