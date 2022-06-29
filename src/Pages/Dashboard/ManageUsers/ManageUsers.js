@@ -113,7 +113,7 @@ const ManageUsers = () => {
                         {
                             users?.map(user => <tr key={user._id}>
                                 <td>{user.email}</td>
-                                <td className=''>{user.role === 'admin' ? 
+                                <td>{user.role === 'admin' ? 
                                     <div className='text-end'>
                                         <button onClick={() => openDeleteModal(user)} className='btn btn-danger'>Delete</button>
                                     </div>

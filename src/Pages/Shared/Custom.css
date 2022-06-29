@@ -103,6 +103,13 @@
     overflow-x: scroll !important;
 }
 
+
+
+th,td {
+    min-width: 220px ;
+    word-break: break-all;
+}
+
 /* Responsive CSS */
 @media (max-width: 575.98px) {
     .section {

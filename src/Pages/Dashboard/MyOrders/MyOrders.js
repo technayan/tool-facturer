@@ -97,12 +97,12 @@ const MyOrders = () => {
                 <tbody>
                     {
                         orders?.map(order => <tr key={order._id} className={`${order.status === 'Shipped' ? 'table-success' : order.status === 'Unpaid' ? 'table-danger' : 'table-primary'}`}>
-                            <td className='w-100'>{order.productName}</td>
-                            <td className='w-100'>{order.orderQuantity} pcs.</td>
-                            <td className='w-100'>${order.totalPrice}</td>
-                            <td className='w-100'>{order.transactionId ? order.transactionId : 'N/A'}</td>
-                            <td className={`w-100 ${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>{order.status}</td>
-                            <td className='w-100'>{order.status === 'Unpaid' && 
+                            <td>{order.productName}</td>
+                            <td>{order.orderQuantity} pcs.</td>
+                            <td>${order.totalPrice}</td>
+                            <td>{order.transactionId ? order.transactionId : 'N/A'}</td>
+                            <td className={`${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>{order.status}</td>
+                            <td>{order.status === 'Unpaid' && 
                                 <div className='d-flex'>
                                     <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success me-5'>Pay</Link>
                                     <button onClick={() => openDeleteModal(order)} className='btn btn-danger'>Delete</button>

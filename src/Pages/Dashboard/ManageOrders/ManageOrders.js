@@ -102,13 +102,14 @@ const ManageOrders = () => {
         <div>
             <h6 className='fw-bold my-4'>My Orders :</h6>
             <div className='table-wrapper'>
-            <Table bordered className=' w-100' >
+            <Table bordered className='table-responsive' >
                 <thead>
                     <tr>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Use Email</th>
+                    <th>User Email</th>
+                    <th>User Address</th>
                     <th>Transaction Id</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -117,17 +118,18 @@ const ManageOrders = () => {
                 <tbody>
                     {
                         orders?.map(order => <tr key={order._id} className={`${order.status === 'Shipped' ? 'table-success' : order.status === 'Unpaid' ? 'table-danger' : 'table-primary'}`}>
-                            <td className='w-100'>{order.productName}</td>
-                            <td className='w-100'>{order.orderQuantity} pcs.</td>
-                            <td className='w-100'>${order.totalPrice}</td>
-                            <td className='w-100'>{order.userEmail}</td>
-                            <td className='w-100'>{order.transactionId ? order.transactionId : 'N/A'}</td>
-                            <td className={`w-100 ${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>
+                            <td>{order.productName}</td>
+                            <td>{order.orderQuantity} pcs.</td>
+                            <td>${order.totalPrice}</td>
+                            <td>{order.userEmail}</td>
+                            <td>{order.userAddress}</td>
+                            <td >{order.transactionId ? order.transactionId : 'N/A'}</td>
+                            <td className={`${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>
                                 {
                                     order.status === 'Paid' ? 'Pending' : order.status 
                                 }
                             </td>
-                            <td className='w-100'>
+                            <td>
                                     {
                                         order.status === 'Paid' && <button onClick={() => shippedOrder(order)} className='btn btn-sm btn-success me-3'>Shipped</button>
                                     }

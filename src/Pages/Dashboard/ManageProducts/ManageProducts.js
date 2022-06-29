@@ -33,10 +33,6 @@ const ManageProducts = () => {
         handleModalShow();
     }
 
-    const updateProduct = product => {
-        console.log(product)
-    }
-
     const deleteProduct = id => {
         fetch(`http://localhost:5000/products/${id}`, {
                 method: 'DELETE',
@@ -83,12 +79,11 @@ const ManageProducts = () => {
                 <tbody>
                     {
                         allProducts?.map(product => <tr key={product._id} >
-                            <td className='w-100'>{product.name}</td>
-                            <td className='w-100'>${product.price}</td>
-                            <td className='w-100'>{product.availableQnt} pcs.</td>
-                            <td className='w-100'>
+                            <td>{product.name}</td>
+                            <td>${product.price}</td>
+                            <td>{product.availableQnt} pcs.</td>
+                            <td>
                                 <div className='d-flex'>
-                                    <button onClick={() => updateProduct(product)} className='btn btn-success me-3'>Update</button>
                                     <button onClick={() => openDeleteModal(product)} className='btn btn-danger'>Delete</button>
                                 </div></td>
                         </tr>) 
