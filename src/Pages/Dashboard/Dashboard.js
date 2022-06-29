@@ -33,17 +33,20 @@ const Dashboard = () => {
                 <Row>
                     <div className="col-lg-3">
                         <div className="sidebar d-flex flex-column d-none d-lg-block">
+
+                            <Link to={'/dashboard/'} className="sidebar-link" >My Profile</Link>
+
                             {
                                 !admin && <>
-                                    <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
+                                    <Link to={'/dashboard/my-orders'} className="sidebar-link" >My Orders</Link>
                                     <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
                                 </>
                             }
-                            <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
                             {
                                 admin && <>
                                     <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
                                     <Link to={'/dashboard/add-product'} className="sidebar-link" >Add Product</Link>
+                                    <Link to={'/dashboard/manage-orders'} className="sidebar-link" >Manage Orders</Link>
                                 </>
 
                             }
@@ -64,18 +67,21 @@ const Dashboard = () => {
                             <Offcanvas.Title><img src={Logo} alt="Tool Facturer"/></Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body className='d-flex flex-column'>
+
+                                <Link to={'/dashboard'} className="sidebar-link" >My Profile</Link>
+
                                 {
                                     !admin && <>
-                                        <Link to={'/dashboard'} className="sidebar-link" >My Orders</Link>
+                                        <Link to={'/dashboard/my-orders'} className="sidebar-link" >My Orders</Link>
                                         <Link to={'/dashboard/add-review'} className="sidebar-link" >Add Review</Link>
                                     </>
                                 }
                                 
-                                <Link to={'/dashboard/my-profile'} className="sidebar-link" >My Profile</Link>
                                 {
                                     admin && <>
                                         <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
                                         <Link to={'/dashboard/add-product'} className="sidebar-link" >Add Product</Link>
+                                        <Link to={'/dashboard/manage-orders'} className="sidebar-link" >Manage Orders</Link>
                                     </>
                                 }
                             </Offcanvas.Body>

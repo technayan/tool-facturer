@@ -96,7 +96,7 @@ const Purchase = () => {
         .then(data => {
             if(data.insertedId) {
                 toast.success('Order added. Please pay form dashboad!');
-                navigate('/dashboard');
+                navigate('/dashboard/my-orders');
                 
             } else {
                 toast.error('Failed to add order. Try Again!')

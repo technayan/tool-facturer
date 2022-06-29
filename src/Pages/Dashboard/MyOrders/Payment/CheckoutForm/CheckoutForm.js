@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Loading from '../../../../Shared/Loading/Loading';
+import { toast } from 'react-toastify';
 
 
 const CheckoutForm = ({order}) => {
@@ -71,9 +72,11 @@ const CheckoutForm = ({order}) => {
         if(intentError) {
             setCardError(intentError?.message);
             setProcessing(false);
+            toast.error('Payment failed!')
         } else {
             setCardError('');
             setTransactionId(paymentIntent.id);
+            toast.success('Payment successful!')
             setSuccess('Congrats! Your payment is successful. You will get your products within 7 official days.')
             
             // Store Payment on Database
@@ -91,7 +94,6 @@ const CheckoutForm = ({order}) => {
             }).then(res => res.json())
             .then(data => {
                 setProcessing(false);
-                console.log(data);
             })
         }
 

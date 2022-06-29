@@ -17,6 +17,7 @@ import AddReview from "./Pages/Dashboard/AddReview/AddReview";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import ManageUsers from "./Pages/Dashboard/ManageUsers/ManageUsers";
 import AddProduct from "./Pages/Dashboard/AddProduct/AddProduct";
+import ManageOrders from "./Pages/Dashboard/ManageOrders/ManageOrders";
 
 function App() {
   return (
@@ -28,12 +29,13 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/products/:id" element={<RequireAuth><Purchase /></RequireAuth>}></Route>
         <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>}>
-          <Route index element={<MyOrders />} />
+          <Route index element={<MyProfile />} />
+          <Route path="my-orders" element={<MyOrders />} />
           <Route path="payment/:id" element={<Payment />} />
           <Route path="add-review" element={<AddReview />} />
-          <Route path="my-profile" element={<MyProfile />} />
           <Route path="manage-users" element={<ManageUsers />} />
           <Route path="add-product" element={<AddProduct />} />
+          <Route path="manage-orders" element={<ManageOrders />} />
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

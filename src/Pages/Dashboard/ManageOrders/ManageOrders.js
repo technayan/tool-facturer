@@ -7,25 +7,27 @@ import Loading from '../../Shared/Loading/Loading';
 import { signOut } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useAdmin from '../../../hooks/useAdmin';
 
-const MyOrders = () => {
+const ManageOrders = () => {
     const [user, loading] = useAuthState(auth);
 
-    const [deletingOrder, setDeletingOrder] = useState(null);
+    const [deletingOrderAdmin, setDeletingOrderAdmin] = useState(null);
 
-    // Modal
-    const [modalShow, setModalShow] = useState(false);
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
+
+    // Delete Modal
+    const [deleteModalAdminShow, setDeleteModalAdminShow] = useState(false);
 
     // Modal Show and Hide Handlers
-    const handleModalClose = () => setModalShow(false);
-    const handleModalShow = () => setModalShow(true);
+    const handleModalClose = () => setDeleteModalAdminShow(false);
+    const handleModalShow = () => setDeleteModalAdminShow(true);
 
     const navigate = useNavigate();
     
-    // User Email
-    const email = user.email;
 
-    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`http://localhost:5000/orders/${email}`, {
+    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`http://localhost:5000/orders`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -39,15 +41,34 @@ const MyOrders = () => {
                 navigate('/login');
             } else {
                 return res.json()
-            }}))
+    }}))
 
-    const openDeleteModal = order => {
-        setDeletingOrder(order);
+
+    const openDeleteOrderModal = order => {
+        setDeletingOrderAdmin(order);
         handleModalShow();
     }
 
-    const deleteOrder = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+    // Shipped Order
+    const shippedOrder = (order) => {
+        fetch(`http://localhost:5000/orders/${order._id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount) {
+                toast.success(`${order.productName} order is shipped.`)
+                refetch();
+            }
+        })
+    }
+
+    const deleteOrderAdmin = id => {
+        fetch(`http://localhost:5000/orders/admin/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',
@@ -58,6 +79,7 @@ const MyOrders = () => {
             .then(data => {
                 if(data.deletedCount) {
                     toast.success('Deleted Successfully!');
+                    refetch();
                 }
             })
             refetch();
@@ -66,8 +88,14 @@ const MyOrders = () => {
     }
     
     // Loading
-    if(loading || isLoading) {
+    if(loading || isLoading || adminLoading) {
         return <Loading />;
+    }
+
+    // Check Admin
+    if(!admin) {
+        signOut(auth);
+        navigate('/login');
     }
 
     return (
@@ -80,6 +108,7 @@ const MyOrders = () => {
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Use Email</th>
                     <th>Transaction Id</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -91,14 +120,21 @@ const MyOrders = () => {
                             <td className='w-100'>{order.productName}</td>
                             <td className='w-100'>{order.orderQuantity} pcs.</td>
                             <td className='w-100'>${order.totalPrice}</td>
+                            <td className='w-100'>{order.userEmail}</td>
                             <td className='w-100'>{order.transactionId ? order.transactionId : 'N/A'}</td>
-                            <td className={`w-100 ${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>{order.status}</td>
-                            <td className='w-100'>{order.status === 'Unpaid' && 
-                                <div className='d-flex'>
-                                    <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success me-5'>Pay</Link>
-                                    <button onClick={() => openDeleteModal(order)} className='btn btn-danger'>Delete</button>
-                                </div>
-                                }</td>
+                            <td className={`w-100 ${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>
+                                {
+                                    order.status === 'Paid' ? 'Pending' : order.status 
+                                }
+                            </td>
+                            <td className='w-100'>
+                                    {
+                                        order.status === 'Paid' && <button onClick={() => shippedOrder(order)} className='btn btn-sm btn-success me-3'>Shipped</button>
+                                    }
+                                    {
+                                        order.status === 'Unpaid' && <button onClick={() => openDeleteOrderModal(order)} className='btn btn-sm btn-danger'>Delete</button>
+                                    }
+                            </td>
                         </tr>) 
                     }
                 </tbody>
@@ -110,24 +146,22 @@ const MyOrders = () => {
 
            {/* Modal */}
 
-            <Modal show={modalShow} onHide={handleModalClose} >
+            <Modal show={deleteModalAdminShow} onHide={handleModalClose} >
                 <Modal.Header closeButton>
                 <Modal.Title className='text-danger'>Delete Alert!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Do you want to delete {deletingOrder?.productName}?</Modal.Body>
+                <Modal.Body>Do you want to delete {deletingOrderAdmin?.productName}?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleModalClose}>
                     Close
                 </Button>
-                <Button variant="danger" onClick={() => deleteOrder(deletingOrder._id)}>
+                <Button variant="danger" onClick={() => deleteOrderAdmin(deletingOrderAdmin._id)}>
                     Delete
                 </Button>
                 </Modal.Footer>
             </Modal>
-            
-           
         </div>
     );
 };
 
-export default MyOrders;
+export default ManageOrders;
