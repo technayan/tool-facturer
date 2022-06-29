@@ -83,7 +83,7 @@ const AddProduct = () => {
             <form onSubmit={handleSubmit(onSubmit)} className='review-form mx-auto mt-5 p-4'>
                 <h4 className='text-center fw-bold'>Product Details</h4>
                 
-                <input type='text' className='w-100 w-lg-50 me-lg-2 p-2 rounded my-2 text-capitalize' placeholder='Product Name' {...register("name", {required: {value: true, message: 'Name is required'}})} />
+                <input type='text' className='w-100 w-lg-50 me-lg-2 p-2 rounded my-2' placeholder='Product Name' {...register("name", {required: {value: true, message: 'Name is required'}})} />
                 {errors.name?.type === 'required' && <span className='text-danger d-block'>{errors.name.message}</span>}
             
                 <textarea className='w-100 p-2 rounded my-2' rows='5' placeholder='Product Description' {...register("description", { required: {value: true, message: 'Review is required'}, minLength:{value: 150, message: 'Minimum 150 characters'}})} />

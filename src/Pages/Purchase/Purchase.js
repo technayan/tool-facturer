@@ -122,7 +122,7 @@ const Purchase = () => {
                 <Row>
                     <div className="col-md-6 col-lg-8">
                         <div className="d-lg-flex justify-content-between text-center">
-                            <img src={product?.imageUrl} className="w-50 mb-4 mb-md-0 h-100" alt={product?.name} />
+                            <img src={product?.imageUrl} className="w-50 mb-4 mb-md-0 h-100 text-capitalize" alt={product?.name} />
                             <div className="product-info ms-md-3 text-start">
                                 <h3 className='fw-bold mb-3'>{product?.name}</h3>
                                 <p>{product?.description}</p>

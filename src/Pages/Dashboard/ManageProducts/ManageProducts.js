@@ -5,14 +5,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import { signOut } from 'firebase/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useAdmin from '../../../hooks/useAdmin';
 
-const MyOrders = () => {
+const ManageProducts = () => {
     const [user, loading] = useAuthState(auth);
 
-    const [deletingOrder, setDeletingOrder] = useState(null);
+    const [deletingProduct, setDeletingProduct] = useState(null);
 
     // useAdmin Hook
     const [admin, adminLoading] = useAdmin(user);
@@ -25,33 +25,20 @@ const MyOrders = () => {
     const handleModalShow = () => setModalShow(true);
 
     const navigate = useNavigate();
-    
-    // User Email
-    const email = user.email;
 
-    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`http://localhost:5000/orders/${email}`, {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json',
-            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-        })
-        .then(res => {
-            if(res.status === 401 || res.status === 403) {
-                localStorage.removeItem('accessToken');
-                signOut(auth);
-                navigate('/login');
-            } else {
-                return res.json()
-            }}))
+    const {data: allProducts, isLoading, refetch} = useQuery('allProducts', () => fetch(`http://localhost:5000/products`).then(res => res.json()))
 
     const openDeleteModal = order => {
-        setDeletingOrder(order);
+        setDeletingProduct(order);
         handleModalShow();
     }
 
-    const deleteOrder = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+    const updateProduct = product => {
+        console.log(product)
+    }
+
+    const deleteProduct = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',
@@ -61,7 +48,7 @@ const MyOrders = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.deletedCount) {
-                    toast.success('Deleted Successfully!');
+                    toast.success('Product deleted Successfully!');
                     refetch();
                 }
             })
@@ -75,8 +62,9 @@ const MyOrders = () => {
     }
 
     // Check Admin
-    if(admin) {
-        navigate('/dashboard');
+    if(!admin) {
+        signOut(auth);
+        navigate('/login');
     }
 
     return (
@@ -87,35 +75,27 @@ const MyOrders = () => {
                 <thead>
                     <tr>
                     <th>Product</th>
-                    <th>Quantity</th>
                     <th>Price</th>
-                    <th>Transaction Id</th>
-                    <th>Status</th>
+                    <th>Available Qnty</th>
                     <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        orders?.map(order => <tr key={order._id} className={`${order.status === 'Shipped' ? 'table-success' : order.status === 'Unpaid' ? 'table-danger' : 'table-primary'}`}>
-                            <td className='w-100'>{order.productName}</td>
-                            <td className='w-100'>{order.orderQuantity} pcs.</td>
-                            <td className='w-100'>${order.totalPrice}</td>
-                            <td className='w-100'>{order.transactionId ? order.transactionId : 'N/A'}</td>
-                            <td className={`w-100 ${order.status === 'Shipped' ? 'text-success' : order.status === 'Unpaid' ? 'text-danger' : 'text-primary'}`}>{order.status}</td>
-                            <td className='w-100'>{order.status === 'Unpaid' && 
+                        allProducts?.map(product => <tr key={product._id} >
+                            <td className='w-100'>{product.name}</td>
+                            <td className='w-100'>${product.price}</td>
+                            <td className='w-100'>{product.availableQnt} pcs.</td>
+                            <td className='w-100'>
                                 <div className='d-flex'>
-                                    <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success me-5'>Pay</Link>
-                                    <button onClick={() => openDeleteModal(order)} className='btn btn-danger'>Delete</button>
-                                </div>
-                                }</td>
+                                    <button onClick={() => updateProduct(product)} className='btn btn-success me-3'>Update</button>
+                                    <button onClick={() => openDeleteModal(product)} className='btn btn-danger'>Delete</button>
+                                </div></td>
                         </tr>) 
                     }
                 </tbody>
             </Table>
             </div>
-            {
-                !orders && <p>You have no order to show.</p>
-            }
 
            {/* Modal */}
 
@@ -123,12 +103,12 @@ const MyOrders = () => {
                 <Modal.Header closeButton>
                 <Modal.Title className='text-danger'>Delete Alert!</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Do you want to delete {deletingOrder?.productName}?</Modal.Body>
+                <Modal.Body>Do you want to delete {deletingProduct?.name}?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleModalClose}>
                     Close
                 </Button>
-                <Button variant="danger" onClick={() => deleteOrder(deletingOrder._id)}>
+                <Button variant="danger" onClick={() => deleteProduct(deletingProduct._id)}>
                     Delete
                 </Button>
                 </Modal.Footer>
@@ -139,4 +119,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default ManageProducts;

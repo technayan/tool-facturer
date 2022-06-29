@@ -41,7 +41,7 @@
 }
 
 .carousel-indicators {
-    bottom: -70px !important;
+    display: none !important;
 }
 
 
