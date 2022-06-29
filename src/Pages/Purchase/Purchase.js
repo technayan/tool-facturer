@@ -7,6 +7,7 @@ import Loading from '../Shared/Loading/Loading';
 import { toast } from 'react-toastify';
 import './Purchase.css'
 import { signOut } from 'firebase/auth';
+import useAdmin from '../../hooks/useAdmin';
 
 const Purchase = () => {
     const [product, setProduct] = useState([]);
@@ -15,6 +16,9 @@ const Purchase = () => {
     const [odrQnt, setOdrQnt] = useState(0);
 
     const navigate = useNavigate();
+
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
 
     // Get the Product Id
     const {id} = useParams();
@@ -62,8 +66,14 @@ const Purchase = () => {
     const total = odrQnt * product?.price ||  product?.minOrderQnt * product?.price; 
 
     // Loading
-    if(loading) {
+    if(loading || adminLoading) {
         return <Loading />
+    }
+
+    // Check Admin
+    if(admin) {
+        navigate('/');
+        toast.error('Admin is not able to order!');
     }
 
     // Error
@@ -77,6 +87,8 @@ const Purchase = () => {
         const order = {
             userName : event.target.name.value,
             userEmail : event.target.email.value,
+            userAddress: event.target.address.value,
+            userPhone: event.target.phone.value,
             productName : product.name,
             orderQuantity : parseInt(event.target.orderQuantity.value),
             totalPrice: total,
@@ -123,6 +135,9 @@ const Purchase = () => {
                             fw-bold mt-2 mb-3'>Purchase</h3>
                             <input type="text" name='name' className='p-2 w-100 my-2' value={user.displayName} disabled />
                             <input type="email" name='email' className='p-2 w-100 my-2' value={user.email} disabled />
+                            <textarea name='address' className='w-100 p-2 rounded my-2' rows='3' placeholder='Enter Address' required />
+                            <input type="text" name='phone' className='p-2 w-100 my-2' placeholder='Phone No.' required />
+
                             <p className='mt-2'>Min. Order Quantity: {product?.minOrderQnt}</p>
                             <p>Available Quantity: {product?.availableQnt}</p>
                             <p>Price per Unit: ${product?.price}</p>

@@ -7,11 +7,15 @@ import Loading from '../../Shared/Loading/Loading';
 import { signOut } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useAdmin from '../../../hooks/useAdmin';
 
 const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
 
     const [deletingOrder, setDeletingOrder] = useState(null);
+
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
 
     // Modal
     const [modalShow, setModalShow] = useState(false);
@@ -66,8 +70,13 @@ const MyOrders = () => {
     }
     
     // Loading
-    if(loading || isLoading) {
+    if(loading || isLoading || adminLoading) {
         return <Loading />;
+    }
+
+    // Check Admin
+    if(admin) {
+        navigate('/dashboard');
     }
 
     return (

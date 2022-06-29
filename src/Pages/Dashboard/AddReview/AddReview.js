@@ -1,8 +1,10 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import useAdmin from '../../../hooks/useAdmin';
 import Loading from '../../Shared/Loading/Loading';
 import './AddReview.css'
 
@@ -10,7 +12,12 @@ const AddReview = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [user, loading] = useAuthState(auth);
 
+    const navigate = useNavigate();
 
+    // useAdmin Hook
+    const [admin, adminLoading] = useAdmin(user);
+
+    // Add Review Handler
     const onSubmit = data => {
         const review = data;
         review.userName = user.displayName;
@@ -36,8 +43,13 @@ const AddReview = () => {
 
 
     // Loading 
-    if (loading) {
+    if (loading || adminLoading) {
         return <Loading />
+    }
+
+    // Check Admin
+    if(admin) {
+        navigate('/dashboard');
     }
 
     return (
