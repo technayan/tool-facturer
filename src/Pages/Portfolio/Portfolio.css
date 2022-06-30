@@ -1,0 +1,50 @@
+.profile-img {
+    border-radius: 10px;
+}
+
+.name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+
+.portfolio-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+}
+
+.portfolio-title::after {
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    content: '';
+    background: #ffc107;
+    bottom: -5px;
+    left: 0;
+}
+
+.work {
+    border: 1px solid #212529;
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%;
+}
+
+.work img {
+    border-radius: 10px;
+}
+
+.project-name {
+    text-decoration: none;
+}
+
+.live-link-btn {
+    text-decoration: none;
+    margin-bottom: auto;
+}
+
+.profile-social-link:hover {
+    color: #ffc107 !important;
+}

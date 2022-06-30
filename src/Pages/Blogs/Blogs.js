@@ -11,7 +11,7 @@ const Blogs = () => {
 
                     <div className="blog border rounded p-3 my-4">
                         <h4>How will you improve the performance of a React Application?</h4>
-                        <p className='mt-4'>Performance is very important for a web application. We can improve the performance of a React Application by following some steps. <br />1. We should use immutable data structures for our react app. <br />2. We should use function or stateless component and use React.PureComponent. <br />3. We should seperate the third-party code form our app code. <br /> 4. We should optimize our dependencies. <br />5. We can use React.Fragments to avoid addition html elements. <br />6. We should avoid inline function definition in the render function of our app.</p>
+                        <p className='mt-4'>Performance is very important for a web application. We can improve the performance of a React Application by following some steps. <br />1. We should use immutable data structures for our react app. <br />2. We should use function or stateless component and use React.PureComponent. <br />3. We should seperate the third-party code form our app code. <br /> 4. We should optimize our dependencies. <br />5. We can use React.Fragments to avoid addition html elements. <br />6. We should avoid inline function definition in the render function of our app. <br /> 7. We should use optimized image in our project.</p>
                     </div>    
                     <div className="blog border rounded p-3 my-4">
                         <h4>What are the different ways to manage a state in a React application?</h4>

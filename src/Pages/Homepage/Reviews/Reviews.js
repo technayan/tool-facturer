@@ -51,7 +51,7 @@ const Reviews = () => {
                                     </>
                                 } </p>
                                 
-                                <p>{review.review}</p>
+                                <p>"{review.review}"</p>
                             </div>
                         </Carousel.Item>)
                     }

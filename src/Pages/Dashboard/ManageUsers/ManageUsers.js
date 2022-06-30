@@ -87,9 +87,10 @@ const ManageUsers = () => {
             .then(data => {
                 if(data.deletedCount) {
                     toast.success('Deleted Successfully!');
+                    refetch();
                 }
             })
-            refetch();
+            
             handleDeleteModalClose();
             
     }

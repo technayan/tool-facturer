@@ -44,7 +44,7 @@ const Dashboard = () => {
                             }
                             {
                                 admin && <>
-                                    <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                                    <Link to={'/dashboard/manage-users'} className="sidebar-link" >Make Admin</Link>
                                     <Link to={'/dashboard/add-product'} className="sidebar-link" >Add A Product</Link>
                                     <Link to={'/dashboard/manage-orders'} className="sidebar-link" >Manage Orders</Link>
                                     <Link to={'/dashboard/manage-products'} className="sidebar-link" >Manage Products</Link>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                                 
                                 {
                                     admin && <>
-                                        <Link to={'/dashboard/manage-users'} className="sidebar-link" >Manage Users</Link>
+                                        <Link to={'/dashboard/manage-users'} className="sidebar-link" >Make Admin</Link>
                                         <Link to={'/dashboard/add-product'} className="sidebar-link" >Add A Product</Link>
                                         <Link to={'/dashboard/manage-orders'} className="sidebar-link" >Manage Orders</Link>
                                         <Link to={'/dashboard/manage-products'} className="sidebar-link" >Manage Products</Link>
