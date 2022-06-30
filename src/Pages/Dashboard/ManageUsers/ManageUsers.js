@@ -34,7 +34,7 @@ const ManageUsers = () => {
         handleDeleteModalShow();
     }
 
-    const {data: users, isLoading, refetch} = useQuery('user', () => fetch('http://localhost:5000/users', {
+    const {data: users, isLoading, refetch} = useQuery('user', () => fetch('https://whispering-bastion-88896.herokuapp.com/users', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const ManageUsers = () => {
     .then(res => res.json()))
 
     const makeAdmin = (user) => {
-        fetch(`http://localhost:5000/user/admin/${user.email}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/user/admin/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -76,7 +76,7 @@ const ManageUsers = () => {
     }
 
     const deleteUser = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/users/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

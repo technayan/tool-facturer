@@ -29,7 +29,7 @@ const MyOrders = () => {
     // User Email
     const email = user.email;
 
-    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`http://localhost:5000/orders/${email}`, {
+    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`https://whispering-bastion-88896.herokuapp.com/orders/${email}`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -51,7 +51,7 @@ const MyOrders = () => {
     }
 
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/orders/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

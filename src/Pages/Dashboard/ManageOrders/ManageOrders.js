@@ -27,7 +27,7 @@ const ManageOrders = () => {
     const navigate = useNavigate();
     
 
-    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`http://localhost:5000/orders`, {
+    const {data: orders, isLoading, refetch} = useQuery('orders', () => fetch(`https://whispering-bastion-88896.herokuapp.com/orders`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -51,7 +51,7 @@ const ManageOrders = () => {
 
     // Shipped Order
     const shippedOrder = (order) => {
-        fetch(`http://localhost:5000/orders/${order._id}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/orders/${order._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -68,7 +68,7 @@ const ManageOrders = () => {
     }
 
     const deleteOrderAdmin = id => {
-        fetch(`http://localhost:5000/orders/admin/${id}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/orders/admin/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

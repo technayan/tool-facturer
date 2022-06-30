@@ -26,7 +26,7 @@ const ManageProducts = () => {
 
     const navigate = useNavigate();
 
-    const {data: allProducts, isLoading, refetch} = useQuery('allProducts', () => fetch(`http://localhost:5000/products`).then(res => res.json()))
+    const {data: allProducts, isLoading, refetch} = useQuery('allProducts', () => fetch(`https://whispering-bastion-88896.herokuapp.com/products`).then(res => res.json()))
 
     const openDeleteModal = order => {
         setDeletingProduct(order);
@@ -34,7 +34,7 @@ const ManageProducts = () => {
     }
 
     const deleteProduct = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/products/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'content-type': 'application/json',

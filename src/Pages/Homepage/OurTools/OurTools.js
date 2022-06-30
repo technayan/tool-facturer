@@ -6,7 +6,7 @@ import './OurTools.css';
 import Product from './Product/Product';
 
 const Tools = () => {
-    const {data: products, isLoading} = useQuery('products', () => fetch('http://localhost:5000/products').then(res => res.json()));
+    const {data: products, isLoading} = useQuery('products', () => fetch('https://whispering-bastion-88896.herokuapp.com/products').then(res => res.json()));
     
     if(isLoading) {
         return <Loading />

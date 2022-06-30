@@ -43,7 +43,7 @@ const AddProduct = () => {
                 }
 
                 // Send Product Info to the Database through Backend
-                fetch('http://localhost:5000/products', {
+                fetch('https://whispering-bastion-88896.herokuapp.com/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

@@ -17,7 +17,7 @@ const MyProfile = () => {
         updatedUser.userName= user.displayName;
         updatedUser.email= user.email;
 
-        fetch(`http://localhost:5000/user/${user.email}`, {
+        fetch(`https://whispering-bastion-88896.herokuapp.com/user/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

@@ -23,7 +23,7 @@ const AddReview = () => {
         review.userName = user.displayName;
         review.userEmail = user.email;
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://whispering-bastion-88896.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

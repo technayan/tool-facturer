@@ -5,7 +5,7 @@ import './Reviews.css'
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const url = 'http://localhost:5000/reviews';
+    const url = 'https://whispering-bastion-88896.herokuapp.com/reviews';
     useEffect(() => {
         fetch(url, {
             method: 'GET',

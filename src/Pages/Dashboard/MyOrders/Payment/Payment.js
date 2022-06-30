@@ -12,7 +12,7 @@ const stripePromise = loadStripe('pk_test_51LDCCcIEh0IjzcDapo1saLUS2nwXYU6NaXv7H
 const Payment = () => {
     const {id} = useParams();
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://whispering-bastion-88896.herokuapp.com/order/${id}`;
 
 
     const {data: order, isLoading} = useQuery(['order', id], () => fetch(url, {
