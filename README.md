@@ -19,5 +19,9 @@ Key Features of the website :
 <li>Admin can add a new product</li>
 <li>Admin can delete product</li>
 
+#### Admin Access:
+Email: programming.hero@gmail.com
+Password: phero123456
+
 
 
