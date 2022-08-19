@@ -20,8 +20,8 @@ Key Features of the website :
 <li>Admin can delete product</li>
 
 #### Admin Access:
-Email: programming.hero@gmail.com
-Password: phero123456
+Email: demo.admin4876@gmail.com
+Password: demoadmin1310
 
 
 
